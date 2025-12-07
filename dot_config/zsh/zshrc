@@ -2,3 +2,17 @@
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Aliases: git
+alias ga='git add'
+alias gap='ga --patch'
+alias gb='git branch'
+alias gc='git commit'
+alias gco='git checkout'
+alias gn='git checkout -b'
+alias gp='git push'
+alias gu='git pull'
+alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias gst='git status --short'
+alias gf='git fetch'
+gcm() { git commit --message "$*" }
+
