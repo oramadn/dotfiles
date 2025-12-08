@@ -1,0 +1,9 @@
+add_newline = false
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"
+
+[git_branch]
+symbol = " "
+

@@ -1,8 +1,19 @@
+# --- Starship prompt ---
+eval "$(starship init zsh)"
+
 # Use plugins in ~/.zsh/plugins
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Aliases: git
+# History settings
+HISTFILE="$HOME/.config/zsh/history"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt sharehistory  
+
+# Aliases
+# git
 alias ga='git add'
 alias gap='ga --patch'
 alias gb='git branch'
@@ -15,4 +26,7 @@ alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
 alias gst='git status --short'
 alias gf='git fetch'
 gcm() { git commit --message "$*" }
+
+# programs
+alias zen='nohup zen-browser >/dev/null 2>&1 &'
 
