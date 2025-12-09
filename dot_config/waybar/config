@@ -1,0 +1,17 @@
+ {
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "all-outputs": true,
+        "show-names": true,
+        "on-click": "hyprctl dispatch workspace {name}"
+    },
+    "clock": {
+        "format": "{:%a %b %d %I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+} 
