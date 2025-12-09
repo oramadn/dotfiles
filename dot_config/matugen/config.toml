@@ -1,6 +1,6 @@
 [config.wallpaper]
 command = "swww"
-arguments = ["img", "--transition-type", "center"]
+arguments = ["img", "--transition-type", "center", "--transition-fps", "180"]
 set = true
 
 [templates.hyprland]
@@ -17,3 +17,7 @@ post_hook = "pkill -SIGUSR2 ghostty"
 input_path = "~/.config/matugen/templates/waybar.css"
 output_path = "~/.config/waybar/colors.css"
 post_hook = 'pkill waybar && waybar &'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
