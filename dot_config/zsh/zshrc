@@ -27,6 +27,10 @@ alias gst='git status --short'
 alias gf='git fetch'
 gcm() { git commit --message "$*" }
 
+# Eza
+alias ls="eza --icons"
+alias ll="eza -lah --icons"
+
 # programs
 alias zen='nohup zen-browser >/dev/null 2>&1 &'
 
