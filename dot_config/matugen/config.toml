@@ -21,3 +21,8 @@ post_hook = 'pkill waybar && waybar &'
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi-colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'
+
+[templates.eww]
+input_path = "~/.config/matugen/templates/eww.scss"
+output_path = "~/.config/eww/colors.scss"
+post_hook = "eww reload"

@@ -1,0 +1,13 @@
+#!/bin/bash
+vol=$(pamixer --get-volume)
+mute=$(pamixer --get-mute)
+
+if [ "$mute" == "true" ]; then
+    echo "󰝟"
+elif [ "$vol" -gt 66 ]; then
+    echo "󰕾"
+elif [ "$vol" -gt 33 ]; then
+    echo "󰖀"
+else
+    echo "󰕿"
+fi

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# $1 argument is "up", "down", or "mute"
+
+# 1. Open the window ONLY if it's not already open
+if ! eww active-windows | grep -q "volume-osd"; then
+    eww open volume-osd
+fi
+
+# 2. Adjust Volume
+if [ "$1" == "up" ]; then
+    pamixer -i 5
+elif [ "$1" == "down" ]; then
+    pamixer -d 5
+elif [ "$1" == "mute" ]; then
+    pamixer -t
+fi
+
+# 3. Trigger the Reveal animation
+eww update vol_reveal=true
+
+# 4. Handle the timer
+timer_file="/tmp/eww_vol_timer"
+if [ -f "$timer_file" ]; then
+    kill $(cat "$timer_file") >/dev/null 2>&1
+fi
+
+(sleep 2 && eww update vol_reveal=false) &
+echo $! > "$timer_file"

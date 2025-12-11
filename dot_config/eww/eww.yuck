@@ -1,0 +1,34 @@
+;; Variables
+(defvar vol_reveal false)
+(defpoll current_vol :interval "50ms" "pamixer --get-volume")
+(defpoll vol_icon :interval "50ms" 
+  "scripts/getvolicon") 
+
+;; Window Definition
+(defwindow volume-osd
+  :monitor 1
+  :geometry (geometry :x "0%"
+                      :y "5%"
+                      :width "250px"
+                      :height "60px"
+                      :anchor "bottom center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (volume_widget))
+
+;; Widget Structure
+(defwidget volume_widget []
+  (revealer :transition "slideup"
+            :reveal vol_reveal
+            :duration "350ms"
+    (box :class "vol-osd"
+         :orientation "h"
+         :space-evenly false
+         :valign "center"
+      (label :class "vol-icon" :text vol_icon)
+      (scale :min 0
+             :max 101
+             :value current_vol
+             :orientation "h"
+             :active false))))
