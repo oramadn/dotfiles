@@ -1,19 +1,26 @@
  {
     "layer": "top",
     "position": "top",
+    "padding-top": 20,
+    "height": 37,
+    "modules-left": ["custom/power"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock"],
 
     "hyprland/workspaces": {
-        "format": "{name}",
+        "format": " ",
         "all-outputs": true,
-        "show-names": true,
-        "on-click": "hyprctl dispatch workspace {name}"
+        "on-click": "hyprctl dispatch workspace {name}",
     },
     "clock": {
     	"format": "{:%I:%M %p}",
     	"tooltip": false, 
     	"on-click": "~/.config/eww/scripts/calendar"
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+	"on-click": "~/.config/eww/scripts/powermenu"
     }
 } 
 

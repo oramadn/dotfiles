@@ -64,3 +64,41 @@ calendar:hover {
 calendar.button {
     color: $on_surface_variant;
 }
+
+/* Powermenu */
+.powermenu-box {
+    background-color: $surface_container;
+    border: 2px solid $primary;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.powermenu-box button {
+    border-radius: 12px;
+    padding: 5px;
+    font-size: 24px;
+    color: $on_surface;
+    background-color: $surface_container_high;
+    transition: all 0.2s; 
+}
+
+.powermenu-box button:hover {
+    background-color: $primary;
+    color: $on_primary;
+}
+
+.powermenu-box .btn-power {
+    color: $error;
+}
+.powermenu-box .btn-power:hover {
+    background-color: $error;
+    color: $on_error;
+}
+
+.powermenu-box .btn-reboot {
+    color: $tertiary;
+}
+.powermenu-box .btn-reboot:hover {
+    background-color: $tertiary;
+    color: $on_tertiary;
+}
