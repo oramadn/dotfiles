@@ -1,8 +1,8 @@
  {
     "layer": "top",
     "position": "top",
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["clock"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -11,7 +11,9 @@
         "on-click": "hyprctl dispatch workspace {name}"
     },
     "clock": {
-        "format": "{:%a %b %d %I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    	"format": "{:%I:%M %p}",
+    	"tooltip": false, 
+    	"on-click": "~/.config/eww/scripts/calendar"
     }
 } 
+

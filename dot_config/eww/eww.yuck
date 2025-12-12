@@ -1,10 +1,9 @@
-;; Variables
+;; Volume Control
 (defvar vol_reveal false)
 (defpoll current_vol :interval "50ms" "pamixer --get-volume")
 (defpoll vol_icon :interval "50ms" 
   "scripts/getvolicon") 
 
-;; Window Definition
 (defwindow volume-osd
   :monitor 1
   :geometry (geometry :x "0%"
@@ -17,7 +16,6 @@
   :focusable false
   (volume_widget))
 
-;; Widget Structure
 (defwidget volume_widget []
   (revealer :transition "slideup"
             :reveal vol_reveal
@@ -32,3 +30,29 @@
              :value current_vol
              :orientation "h"
              :active false))))
+
+;; Calendar
+(defwindow calendar
+  :monitor 1 
+  :geometry (geometry :x "20px"
+                      :y "20px"
+                      :width "270px"
+                      :height "60px"
+                      :anchor "top right")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore false
+  (cal))
+
+(defwidget cal []
+  (box :class "cal-box"
+       :orientation "v"
+       :space-evenly false
+    (calendar :class "cal" 
+              :day day 
+              :month month 
+              :year year)))
+
+(defpoll day :interval "10h" "date +%d")
+(defpoll month :interval "10h" "date +%m")
+(defpoll year :interval "10h" "date +%Y")
