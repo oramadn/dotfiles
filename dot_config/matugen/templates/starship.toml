@@ -1,0 +1,13 @@
+add_newline = false
+
+[character]
+success_symbol = "[❯](fg:{{colors.primary.default.hex}})"
+error_symbol   = "[❯](fg:{{colors.error.default.hex}})"
+
+[git_branch]
+symbol = " "
+style  = "fg:{{colors.secondary.default.hex}}"
+
+[directory]
+style = "bold fg:{{colors.primary.default.hex}}"
+

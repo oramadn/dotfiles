@@ -4,3 +4,21 @@ cursor-color = #e1e2e9
 cursor-text = #c4c6cf
 selection-background = #bdc7dc
 selection-foreground = #273141
+
+palette = 0=#43474e
+palette = 1=#ffb4ab
+palette = 2=#dabde2
+palette = 3=#bdc7dc
+palette = 4=#a6c8ff
+palette = 5=#3d4758
+palette = 6=#43474e
+palette = 7=#e1e2e9
+
+palette = 8=#43474e
+palette = 9=#ffb4ab
+palette = 10=#dabde2
+palette = 11=#bdc7dc
+palette = 12=#a6c8ff
+palette = 13=#3d4758
+palette = 14=#43474e
+palette = 15=#e1e2e9

@@ -26,3 +26,9 @@ output_path = '~/.config/rofi/colors.rasi'
 input_path = "~/.config/matugen/templates/eww.scss"
 output_path = "~/.config/eww/colors.scss"
 post_hook = "eww reload"
+
+[templates.starship]
+input_path = "~/.config/matugen/templates/starship.toml"
+output_path = "~/.config/starship.toml"
+post_hook = ""
+
