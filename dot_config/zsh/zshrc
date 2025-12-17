@@ -1,6 +1,11 @@
 # --- Starship prompt ---
 eval "$(starship init zsh)"
 
+# --- rbenv ---
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
 # Use plugins in ~/.zsh/plugins
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
