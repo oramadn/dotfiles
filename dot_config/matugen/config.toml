@@ -35,3 +35,7 @@ post_hook = ""
 [templates.tmux]
 input_path = '~/.config/matugen/templates/tmux.conf'
 output_path = '~/.config/tmux/colors.conf'
+
+[templates.lualine]
+input_path = '~/.config/matugen/templates/lualine.lua'
+output_path = '~/.config/nvim/lua/matugen_lualine.lua'
