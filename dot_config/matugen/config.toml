@@ -32,3 +32,6 @@ input_path = "~/.config/matugen/templates/starship.toml"
 output_path = "~/.config/starship.toml"
 post_hook = ""
 
+[templates.tmux]
+input_path = '~/.config/matugen/templates/tmux.conf'
+output_path = '~/.config/tmux/colors.conf'
