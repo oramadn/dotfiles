@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 1. Kill any running instances to prevent conflicts
+eww kill
+killall -q eww
+
+# 2. WAIT a split second to ensure processes are dead
+sleep 0.5
+
+# 3. CLEANUP: Remove the stale socket file that caused your panic
+# This prevents the "second time provided was later than self" error
+rm -f /run/user/$UID/eww-server*
+
+# 4. Start the daemon in the background
+eww daemon &
