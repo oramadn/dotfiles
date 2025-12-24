@@ -36,6 +36,5 @@ gcm() { git commit --message "$*" }
 alias ls="eza --icons"
 alias ll="eza -lah --icons"
 
-# programs
-alias zen='nohup zen-browser >/dev/null 2>&1 &'
-
+# Chezmoi
+alias chc="~/bin/chezmoi-commit.sh"
