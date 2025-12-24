@@ -6,3 +6,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+-- Run RSpec
+vim.api.nvim_create_user_command("RSpec", function(opts)
+  local target = opts.args ~= "" and opts.args or "spec"
+  vim.cmd("15split")
+  vim.cmd("terminal bundle exec rspec " .. target)
+  vim.cmd("startinsert")
+end, {
+  nargs = "?",
+  complete = "file",
+})
+
+-- Run current file spec
+vim.api.nvim_create_user_command("RSpecFile", function()
+  vim.cmd("15split")
+  vim.cmd("terminal bundle exec rspec " .. vim.fn.expand("%"))
+  vim.cmd("startinsert")
+end, {})
+
+
+
