@@ -7,6 +7,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Switching themes
+vim.api.nvim_create_user_command("Theme", function(opts)
+  vim.cmd("colorscheme " .. opts.args)
+end, {
+  nargs = 1,
+  complete = "color",
+})
+
 -- Run RSpec
 vim.api.nvim_create_user_command("RSpec", function(opts)
   local target = opts.args ~= "" and opts.args or "spec"
