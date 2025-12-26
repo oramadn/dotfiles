@@ -1,10 +1,31 @@
 # --- Starship prompt ---
 eval "$(starship init zsh)"
 
-# --- rbenv ---
+# --- Pyenv (Python) ---
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# --- rbenv (Ruby) ---
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init - zsh)"
+autoload -Uz compinit
+compinit
+
+# --- Yazi ---
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list \
+  'm:{a-z}={A-Z}' \
+  'm:{A-Z}={a-z}'
 
 # Use plugins in ~/.zsh/plugins
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -38,3 +59,7 @@ alias ll="eza -lah --icons"
 
 # Chezmoi
 alias chc="~/bin/chezmoi-commit.sh"
+
+# Nvim
+alias nvimcfg='nvim ~/.config/nvim'
+

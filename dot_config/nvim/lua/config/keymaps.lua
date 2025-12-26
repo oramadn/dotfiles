@@ -24,3 +24,8 @@ vim.keymap.set('n', '<leader>yl', function()
   vim.fn.setreg('+', text)
   print('Yanked: ' .. text)
 end, { desc = '[Y]ank file:[L]ine' })
+
+vim.keymap.set('n', '<leader>vc', function()
+  vim.cmd 'vsplit'
+  vim.cmd 'terminal nvim ~/.config/nvim'
+end, { desc = 'Edit Neovim config' })
