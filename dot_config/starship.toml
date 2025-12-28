@@ -1,13 +1,13 @@
 add_newline = false
 
 [character]
-success_symbol = "[❯](fg:#a6c8ff)"
+success_symbol = "[❯](fg:#b2c5ff)"
 error_symbol   = "[❯](fg:#ffb4ab)"
 
 [git_branch]
 symbol = " "
-style  = "fg:#bdc7dc"
+style  = "fg:#c0c6dd"
 
 [directory]
-style = "bold fg:#a6c8ff"
+style = "bold fg:#b2c5ff"
 
