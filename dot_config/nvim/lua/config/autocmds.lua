@@ -33,17 +33,10 @@ vim.api.nvim_create_user_command('RSpecFile', function()
   vim.cmd 'startinsert'
 end, {})
 
--- Reload NVIM config
-local function reload_user_config()
-  for name, _ in pairs(package.loaded) do
-    if name:match '^user' then
-      package.loaded[name] = nil
-    end
-  end
-
-  dofile(vim.env.MYVIMRC)
-  vim.notify('Neovim config reloaded', vim.log.levels.INFO)
-end
-
-vim.api.nvim_create_user_command('ReloadConfig', reload_user_config, {})
-vim.keymap.set('n', '<leader>vr', '<cmd>ReloadConfig<CR>', { desc = 'Reload config' })
+-- added env files to sh lsp
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '.env', '.env.*', '.envrc', 'env.example' },
+  callback = function()
+    vim.bo.filetype = 'sh'
+  end,
+})
