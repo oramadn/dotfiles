@@ -1,7 +1,7 @@
 return {
   {
     'rebelot/kanagawa.nvim',
-    priority = 1000,
+    priority = 900,
     config = function()
       require('kanagawa').setup {
         compile = false,
@@ -18,7 +18,7 @@ return {
         background = { dark = 'wave', light = 'lotus' },
       }
 
-      vim.cmd.colorscheme 'kanagawa'
+      -- vim.cmd.colorscheme 'kanagawa'
     end,
   },
   {
@@ -66,5 +66,10 @@ return {
         },
       }
     end,
+  },
+  {
+    'folke/tokyonight.nvim',
+
+    vim.cmd.colorscheme 'tokyonight',
   },
 }
