@@ -6,5 +6,6 @@ hyprctl keyword monitor "DP-4,  1920x1080@100, 1920x0, 1"
 hyprctl keyword monitor "eDP-1, 1920x1080@60,  3840x0, 1"
 
 # Move workspaces to their assigned monitors
+hyprctl dispatch moveworkspacetomonitor 1 DP-3
 hyprctl dispatch moveworkspacetomonitor 2 DP-4
-hyprctl dispatch moveworkspacetomonitor 3 DP-3
+hyprctl dispatch moveworkspacetomonitor 3 eDP-1
