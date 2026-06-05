@@ -1,0 +1,30 @@
+[bar]
+location = "bottom"
+
+[[bar.layout]]
+monitor = "*"
+left = ["clock"]
+center = ["hyprland-workspaces"]
+right = ["volume", "battery"]
+
+[modules.clock]
+format = "%a %b %d  %I:%M %p"
+
+
+[styling]
+theme-provider = "wayle"
+
+[styling.palette]
+bg       = "#111318"
+surface  = "#1e1f25"
+elevated = "#282a2f"
+fg       = "#e2e2e9"
+fg-muted = "#c4c6d0"
+primary  = "#adc6ff"
+red      = "#ffb4ab"
+yellow   = "#debcdf"
+green    = "#bfc6dc"
+blue     = "#d8e2ff"
+
+[wallpaper]
+engine-enabled = false

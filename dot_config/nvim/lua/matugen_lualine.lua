@@ -1,13 +1,13 @@
 local colors = {
-	primary = "#b2c5ff",
-	on_primary = "#182e60",
-	secondary = "#c0c6dd",
-	on_secondary = "#2a3042",
-	tertiary = "#e1bbdc",
-	on_tertiary = "#422741",
+	primary = "#adc6ff",
+	on_primary = "#112f60",
+	secondary = "#bfc6dc",
+	on_secondary = "#293041",
+	tertiary = "#debcdf",
+	on_tertiary = "#402843",
 	bar_bg = "#1e1f25",
-	text = "#e3e2e9",
-	inactive_text = "#8f909a",
+	text = "#e2e2e9",
+	inactive_text = "#8e9099",
 }
 
 return {
