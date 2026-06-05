@@ -27,8 +27,3 @@ output_path = '~/.config/tmux/colors.conf'
 [templates.lualine]
 input_path = '~/.config/matugen/templates/lualine.lua'
 output_path = '~/.config/nvim/lua/matugen_lualine.lua'
-
-[templates.wayle]
-input_path = '~/.config/matugen/templates/wayle-config.toml'
-output_path = '~/.config/wayle/config.toml'
-post_hook = 'wayle panel restart'
