@@ -5,7 +5,7 @@ location = "bottom"
 monitor = "*"
 left = ["clock"]
 center = ["hyprland-workspaces"]
-right = ["volume", "battery"]
+right = ["bluetooth", "network", "volume", "battery"]
 
 [modules.clock]
 format = "%a %b %d  %I:%M %p"
