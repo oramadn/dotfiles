@@ -1,0 +1,351 @@
+// ~/.config/niri/config.kdl
+// Migrated from Hyprland — niri scrollable-tiling Wayland compositor
+
+// ============================================================
+// ENVIRONMENT VARIABLES
+// ============================================================
+environment {
+    XCURSOR_SIZE "24"
+    // NVIDIA
+    NVD_BACKEND "direct"
+    LIBVA_DRIVER_NAME "nvidia"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+}
+
+// ============================================================
+// AUTOSTART
+// ============================================================
+spawn-at-startup "awww-daemon"
+spawn-sh-at-startup "sleep 2 && wayle shell"
+spawn-at-startup "hypridle"
+
+// ============================================================
+// CURSOR
+// ============================================================
+cursor {
+    xcursor-size 24
+    hide-when-typing
+}
+
+// ============================================================
+// CLIPBOARD (disable middle-click paste, matches Hyprland)
+// ============================================================
+clipboard {
+    disable-primary
+}
+
+// ============================================================
+// SCREENSHOT PATH
+// ============================================================
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// ============================================================
+// PREFER NO CSD
+// ============================================================
+prefer-no-csd
+
+// ============================================================
+// OUTPUTS / MONITORS
+// ============================================================
+
+// --- 2-monitor PC ---
+// DP-1: ASUS VG24V  1080p 144Hz — left
+output "DP-1" {
+    mode "1920x1080@144.001"
+    position x=0 y=0
+    scale 1.0
+    variable-refresh-rate
+}
+
+// DP-2: AOC Q27G4  2K 180Hz — right (main)
+output "DP-2" {
+    mode "2560x1440@179.998"
+    position x=1920 y=0
+    scale 1.0
+    variable-refresh-rate
+}
+
+// --- 3-monitor / laptop docked setup ---
+output "DP-3" {
+    mode "1920x1080@100"
+    position x=0 y=0
+    scale 1.0
+}
+
+output "DP-4" {
+    mode "1920x1080@100"
+    position x=1920 y=0
+    scale 1.0
+}
+
+output "eDP-1" {
+    mode "1920x1080@60"
+    position x=3840 y=0
+    scale 1.0
+}
+
+// ============================================================
+// NAMED WORKSPACES
+// ============================================================
+
+// 2-monitor PC: WS 1 on main (DP-2), WS 2 on secondary (DP-1)
+workspace "1" {
+    open-on-output "DP-2"
+}
+workspace "2" {
+    open-on-output "DP-1"
+}
+
+// 3-monitor / docked: one workspace per screen
+workspace "3" {
+    open-on-output "DP-3"
+}
+workspace "4" {
+    open-on-output "DP-4"
+}
+workspace "5" {
+    open-on-output "eDP-1"
+}
+
+// Scratchpad equivalent (replaces Hyprland special workspace "magic")
+workspace "scratch"
+
+// ============================================================
+// INPUT
+// ============================================================
+input {
+    keyboard {
+        xkb {
+            layout "us,ara"
+            options "grp:alt_shift_toggle"
+        }
+    }
+
+    mouse {
+        accel-speed 0.0
+        accel-profile "flat"
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        accel-speed 0.0
+    }
+
+    // Focus follows mouse (like follow_mouse=1 in Hyprland)
+    focus-follows-mouse
+}
+
+// ============================================================
+// LAYOUT
+// ============================================================
+layout {
+    // gaps_in=2, gaps_out=4 in Hyprland → gaps 4 + struts to add extra outer margin
+    gaps 4
+
+    // Border: active = $primary (#adc6ff), inactive = $on_primary (#112f60)
+    border {
+        width 2
+        active-color "#adc6ff"
+        inactive-color "#112f60"
+    }
+
+    // Focus ring off — using border for both active/inactive state instead
+    focus-ring {
+        off
+    }
+
+    center-focused-column "on-overflow"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+
+    default-column-width { proportion 0.5; }
+}
+
+// ============================================================
+// WINDOW RULES
+// ============================================================
+
+// Rounded corners (rounding=10 in Hyprland)
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// Background blur (blur size=6 passes=2 xray=true in Hyprland)
+window-rule {
+    background-effect {
+        blur true
+        xray true
+        noise 0.05
+        saturation 1.5
+    }
+}
+
+// Inactive window opacity (inactive_opacity=0.95 in Hyprland)
+window-rule {
+    match is-focused=false
+    opacity 0.95
+}
+
+// ============================================================
+// ANIMATIONS
+// ============================================================
+animations {
+    // Workspace switch (replaces Hyprland's workspaces animation)
+    workspace-switch {
+        spring damping-ratio=0.8 stiffness=1000 epsilon=0.0001
+    }
+
+    // Window open (replaces windowsIn / fadeIn)
+    window-open {
+        duration-ms 300
+        curve "ease-out-expo"
+    }
+
+    // Window close (replaces windowsOut / fadeOut)
+    window-close {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+
+    // Horizontal scroll / column navigation (replaces layers animation)
+    horizontal-view-movement {
+        spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+    }
+
+    // Window repositioning
+    window-movement {
+        spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+    }
+
+    // Window resize
+    window-resize {
+        spring damping-ratio=0.8 stiffness=600 epsilon=0.0001
+    }
+
+    // Overview zoom
+    overview-open-close {
+        spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+    }
+}
+
+// ============================================================
+// KEY BINDINGS
+// ============================================================
+binds {
+    // ---- Terminal & Core Apps ----
+    Super+Return { spawn "ghostty"; }
+    Super+E      { spawn "dolphin"; }
+
+    // Browser: Personal / Work profiles (zen-browser)
+    Super+B       { spawn "zen-browser"; }
+    Super+Shift+B { spawn "zen-browser" "-P" "Work"; }
+
+    // ---- Launchers ----
+    Super+Space   { spawn "rofi" "-show" "drun"; }
+    Super+Shift+E { spawn "rofi" "-modi" "emoji" "-show" "emoji"; }
+
+    // ---- Help ----
+    Super+Shift+slash { show-hotkey-overlay; }
+
+    // ---- Overview ----
+    Super+Tab { toggle-overview; }
+
+    // ---- Window Management ----
+    Super+Q { close-window; }
+    Super+F { fullscreen-window; }
+    Super+V { toggle-window-floating; }   // replaces Hyprland togglefloating
+    Super+M { quit; }
+
+    // ---- Focus Navigation ----
+    Super+Left  { focus-column-left; }
+    Super+Right { focus-column-right; }
+    Super+Up    { focus-window-up-or-column-left; }
+    Super+Down  { focus-window-down-or-column-right; }
+
+    // ---- Move Windows ----
+    Super+Shift+Left  { move-column-left; }
+    Super+Shift+Right { move-column-right; }
+    Super+Shift+Up    { move-window-up; }
+    Super+Shift+Down  { move-window-down; }
+
+    // ---- Column Layout (replaces Hyprland Super+J togglesplit) ----
+    Super+J { switch-preset-column-width; }
+    Super+P { maximize-column; }
+
+    // ---- Workspaces (named 1-5, dynamic 6-10) ----
+    Super+1 { focus-workspace "1"; }
+    Super+2 { focus-workspace "2"; }
+    Super+3 { focus-workspace "3"; }
+    Super+4 { focus-workspace "4"; }
+    Super+5 { focus-workspace "5"; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+0 { focus-workspace 10; }
+
+    // Move window to workspace
+    Super+Shift+1 { move-column-to-workspace "1"; }
+    Super+Shift+2 { move-column-to-workspace "2"; }
+    Super+Shift+3 { move-column-to-workspace "3"; }
+    Super+Shift+4 { move-column-to-workspace "4"; }
+    Super+Shift+5 { move-column-to-workspace "5"; }
+    Super+Shift+6 { move-column-to-workspace 6; }
+    Super+Shift+7 { move-column-to-workspace 7; }
+    Super+Shift+8 { move-column-to-workspace 8; }
+    Super+Shift+9 { move-column-to-workspace 9; }
+    Super+Shift+0 { move-column-to-workspace 10; }
+
+    // Scratchpad (replaces Hyprland special workspace "magic")
+    Super+grave       { focus-workspace "scratch"; }
+    Super+Shift+grave { move-column-to-workspace "scratch"; }
+
+    // Scroll between workspaces with mouse wheel
+    Super+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Super+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+
+    // Navigate workspaces vertically with keyboard
+    Super+Page_Down       { focus-workspace-down; }
+    Super+Page_Up         { focus-workspace-up; }
+    Super+Shift+Page_Down { move-column-to-workspace-down; }
+    Super+Shift+Page_Up   { move-column-to-workspace-up; }
+
+    // ---- Screenshots ----
+    // Region screenshot → satty annotation (replaces Super+Shift+S in Hyprland)
+    Super+Shift+S { spawn-sh "grim -g \"$(slurp)\" - | satty --filename -"; }
+    // Full interactive screenshot UI
+    Print { screenshot; }
+
+    // ---- Color Picker ----
+    Super+Shift+C { spawn "hyprpicker" "-a"; }
+
+    // ---- Lock Screen ----
+    Super+L { spawn "hyprlock"; }
+
+    // ---- Monitor Mode Scripts ----
+    Super+F1 { spawn "sh" "-c" "~/.config/niri/scripts/mode_laptop.sh"; }
+    Super+F2 { spawn "sh" "-c" "~/.config/niri/scripts/mode_desk.sh"; }
+
+    // ---- Volume ----
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    // ---- Brightness ----
+    XF86MonBrightnessUp   { spawn "brightnessctl" "-e4" "-n2" "set" "5%+"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "-e4" "-n2" "set" "5%-"; }
+
+    // ---- Media Keys ----
+    XF86AudioNext  allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPause allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPlay  allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev  allow-when-locked=true { spawn "playerctl" "previous"; }
+}
