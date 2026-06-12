@@ -132,8 +132,8 @@ input {
         accel-speed 0.0
     }
 
-    // Focus follows mouse (like follow_mouse=1 in Hyprland)
-    focus-follows-mouse
+    // Focus only on click, not hover
+    // focus-follows-mouse
 }
 
 // ============================================================
@@ -160,7 +160,6 @@ layout {
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
-        proportion 0.66667
         proportion 1.0
     }
 
