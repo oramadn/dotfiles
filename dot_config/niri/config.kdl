@@ -84,27 +84,26 @@ output "eDP-1" {
     scale 1.0
 }
 
+// --- 4K temporary (Smart Board HDMI-A-1) ---
+output "HDMI-A-1" {
+    mode "3840x2160@60.000"
+    scale 1.5
+}
+
 // ============================================================
 // NAMED WORKSPACES
 // ============================================================
 
-// 2-monitor PC: WS 1 on main (DP-2), WS 2 on secondary (DP-1)
+// Docked setup: 1=laptop (right), 2=middle, 3=left
+// PC setup (DP-1/DP-2): no pinning — niri distributes automatically
 workspace "1" {
-    open-on-output "DP-2"
+    open-on-output "eDP-1"
 }
 workspace "2" {
-    open-on-output "DP-1"
-}
-
-// 3-monitor / docked: one workspace per screen
-workspace "3" {
-    open-on-output "DP-3"
-}
-workspace "4" {
     open-on-output "DP-4"
 }
-workspace "5" {
-    open-on-output "eDP-1"
+workspace "3" {
+    open-on-output "DP-3"
 }
 
 // Scratchpad equivalent (replaces Hyprland special workspace "magic")
