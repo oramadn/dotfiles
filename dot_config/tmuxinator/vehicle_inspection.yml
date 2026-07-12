@@ -1,0 +1,50 @@
+# ~/.config/tmuxinator/vehicle_inspection.yml
+# Start with:  tmuxinator start vehicle_inspection   (alias: mux start vehicle_inspection)
+name: vehicle_inspection
+root: /home/omar/Workspace/connectedmotion/vehicle-inspection
+
+# Project-scoped keybinding: `prefix + C` prompts for a task label, then spawns a
+# fresh Claude window named `cc:<label>` (defaults to `cc:main` if you just hit enter).
+# Removed again when you stop the project so your global tmux config stays clean.
+on_project_start: >
+  tmux bind-key C command-prompt -I 'main' -p 'claude task:' "new-window -n 'cc:%%' -c '#{pane_current_path}' 'claude'"
+on_project_exit: tmux unbind-key C
+
+windows:
+  - editor:
+      root: /home/omar/Workspace/connectedmotion/vehicle-inspection
+      panes:
+        - nvim
+
+  - yazi:
+      root: /home/omar/Workspace/connectedmotion/vehicle-inspection
+      panes:
+        - yazi
+
+  - server:
+      root: /home/omar/Workspace/connectedmotion/vehicle-inspection/backend
+      layout: even-vertical
+      panes:
+        - server:
+            - source .venv/bin/activate
+            - uvicorn local_runner:app --reload --host 0.0.0.0 --port 8087
+        - ngrok:
+            - ngrok http 8087
+
+  - mobile:
+      root: /home/omar/Workspace/connectedmotion/vehicle-inspection/mobile
+      layout: main-vertical
+      panes:
+        - editor:
+            - nvim
+        - devices:
+            - flutter devices
+
+  - docker:
+      panes:
+        - lazydocker
+
+  - claude:
+      root: /home/omar/Workspace/connectedmotion/vehicle-inspection
+      panes:
+        - claude
