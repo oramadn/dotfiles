@@ -1,0 +1,4 @@
+# Prefix key to enter prefix mode (default: "ctrl+b")
+# Examples: "ctrl+b", "f12", "esc", "-"
+[keys]
+prefix = "ctrl+s"
