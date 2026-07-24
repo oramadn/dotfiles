@@ -6,9 +6,18 @@ root: /home/omar/Workspace/connectedmotion/vehicle-inspection
 # Project-scoped keybinding: `prefix + C` prompts for a task label, then spawns a
 # fresh Claude window named `cc:<label>` (defaults to `cc:main` if you just hit enter).
 # Removed again when you stop the project so your global tmux config stays clean.
+#
+# NOTE: `prefix + C` (capital C) is tmux's *built-in* binding for `customize-mode`
+# (the settings overlay). We override it here. The leading `list-keys` round-trip
+# forces the server + its default key-tables to finish loading first, otherwise on a
+# cold `start-server` the built-in default can load a beat late and clobber our bind.
+# The explicit `unbind-key` then drops the default before we install our own.
 on_project_start: >
-  tmux bind-key C command-prompt -I 'main' -p 'claude task:' "new-window -n 'cc:%%' -c '#{pane_current_path}' 'claude'"
-on_project_exit: tmux unbind-key C
+  tmux list-keys >/dev/null 2>&1;
+  tmux unbind-key -T prefix C;
+  tmux bind-key -T prefix C command-prompt -I 'main' -p 'claude task:'
+  "new-window -n 'cc:%%' -c '#{pane_current_path}' 'claude'"
+on_project_exit: tmux unbind-key -T prefix C
 
 windows:
   - editor:
@@ -16,24 +25,19 @@ windows:
       panes:
         - nvim
 
-  - yazi:
-      root: /home/omar/Workspace/connectedmotion/vehicle-inspection
-      panes:
-        - yazi
-
   - server:
       root: /home/omar/Workspace/connectedmotion/vehicle-inspection/backend
       layout: even-vertical
       panes:
         - server:
             - source .venv/bin/activate
-            - uvicorn local_runner:app --reload --host 0.0.0.0 --port 8087
+            - uv run run-local
         - ngrok:
             - ngrok http 8087
 
   - mobile:
       root: /home/omar/Workspace/connectedmotion/vehicle-inspection/mobile
-      layout: main-vertical
+      layout: even-vertical
       panes:
         - editor:
             - nvim
@@ -44,7 +48,3 @@ windows:
       panes:
         - lazydocker
 
-  - claude:
-      root: /home/omar/Workspace/connectedmotion/vehicle-inspection
-      panes:
-        - claude
