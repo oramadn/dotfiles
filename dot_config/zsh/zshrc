@@ -1,3 +1,5 @@
+bindkey -e
+
 # --- Starship prompt ---
 eval "$(starship init zsh)"
 
@@ -51,6 +53,9 @@ alias chc="~/bin/chezmoi-commit.sh"
 # Nvim
 alias nvimcfg='nvim ~/.config/nvim'
 
+# context-ledgar
+alias ledger="$HOME/Workspace/connectedmotion/vehicle-inspection/context-ledger/bin/ledger"
+
 # Matugen + awww wallpaper setter (applies to all monitors)
 matugen-wall() { matugen image "$1" && awww img "$1" }
 
@@ -59,9 +64,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Flutter
-export PATH="$PATH:$HOME/opt/flutter/bin"
+export PATH="$PATH:$HOME/development/flutter/bin"
 
 # Android
 export ANDROID_HOME="$HOME/Android/Sdk"
-export JAVA_HOME="/opt/android-studio/jbr"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export JAVA_HOME="$HOME/development/jdk-17.0.19+10"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$JAVA_HOME/bin"
